@@ -43,6 +43,20 @@ def set_country_to_pop():
                Pop 01Jul2017 column
             2. The % decrease as a number
     """
+    global country_to_pop
+    country_to_pop = dict()
+    rows = country_pop.strip().split('\n')
+    for row in rows[1:]:
+        columns = row.split(',')
+        country_name = columns[1].strip()
+        population_text = columns[5].strip()
+        pct_decrease_text = columns[6].strip()
+
+        pop_num = conv_num_with_commas(population_text)
+        pct_decrease_num = float(pct_decrease_text)
+
+        country_to_pop[country_name] = (pop_num, pct_decrease_num)
+
 
 
 def get_population(country_name):

@@ -104,4 +104,17 @@ def get_continents():
 def get_continent_populations():
     """Returns a dict where the key is the name of the continent and
        the value is the total population of all countries on that continent"""
-
+    continent_to_population = dict()
+    rows = country_pop.strip().split('\n')[1:]  # Skip header
+    
+    for row in rows:
+        columns = row.split('\t')
+        continent_name = columns[2]
+        population = conv_num_with_commas(columns[5])
+        
+        if continent_name in continent_to_population:
+            continent_to_population[continent_name] += population
+        else:
+            continent_to_population[continent_name] = population
+    
+    return continent_to_population

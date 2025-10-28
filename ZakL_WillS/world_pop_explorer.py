@@ -34,6 +34,20 @@ def conv_num_with_commas(number_text):
 
 def get_top_five_countries():
     """Return a list of names of the top five countries in terms of population"""
+    rows = country_pop.strip().split('\n')[1:]  # Skip header
+    country_population_list = []
+    
+    for row in rows:
+        columns = row.split('\t')
+        country_name = columns[1]
+        population = conv_num_with_commas(columns[5])
+        country_population_list.append((country_name, population))
+    
+    # Sort by population in descending order
+    country_population_list.sort(key=lambda x: x[1], reverse=True)
+    
+    top_five_countries = [country_population_list[i][0] for i in range(5)]
+    return top_five_countries
 
 
 def set_country_to_pop():
@@ -57,6 +71,15 @@ def set_country_to_pop():
 
         country_to_pop[country_name] = (pop_num, pct_decrease_num)
 
+    global country_to_pop = dict():
+    rows = country_pop.strip().split('\n')[1:]  # Skip header
+    for row in rows:
+        columns = row.split('\t')
+        country_name = columns[1]
+        population = conv_num_with_commas(columns[5])
+        percent_decrease = float(columns[6])
+        country_to_pop[country_name] = (population, percent_decrease)
+    
 
 
 def get_population(country_name):

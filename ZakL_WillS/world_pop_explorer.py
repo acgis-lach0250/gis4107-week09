@@ -21,9 +21,8 @@ country_to_pop = dict()
 def get_country_count():
     """Return the number of countries in country_pop.
     Assume data (country_pop) always has a header."""
-    rows = country_pop.strip().split('\n')
+    rows = country_pop.split('\n')
     return len(rows) - 1
-
     
 
 def conv_num_with_commas(number_text):

@@ -76,11 +76,29 @@ def get_population(country_name):
     """Given the name of the country, return the population as of 01Jul2017
        from country_to_pop.  If the country_to_pop is
        empty (i.e. no keys or values), then run set_country_to_pop
-       to initialize it."""
+       to initialize it."""    
+    if not country_to_pop:
+        rows = country_pop.split('\n')[1:]  # Skip header
+        for row in rows:
+            columns = row.split('\t')
+            name = columns[1]
+            population = conv_num_with_commas(columns[5])
+            country_to_pop[name] = population
+    
+    return country_to_pop.get(country_name)
 
 
 def get_continents():
     """Return the list of continents"""
+    rows = country_pop.strip().split('\n')[1:]  # Skip header
+    continents = set()
+    
+    for row in rows:
+        columns = row.split('\t')
+        continent_name = columns[2]
+        continents.add(continent_name)
+    
+    return sorted(list(continents))
 
 
 def get_continent_populations():

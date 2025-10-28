@@ -19,13 +19,17 @@ country_to_pop = dict()
 
 
 def get_country_count():
-    """Return the number of countries in country_pop.  
-    NOTE:  Assume data (country_pop) will always have a header"""
+    """Return the number of countries in country_pop.
+    Assume data (country_pop) always has a header."""
+    rows = country_pop.strip().split('\n')
+    return len(rows) - 1
+
     
 
 def conv_num_with_commas(number_text):
     """Convert a number with commas (str) to a number.
        e.g. '1,000' would be converted to 1000"""
+    return int(number_text.replace(',', ''))
 
 
 def get_top_five_countries():

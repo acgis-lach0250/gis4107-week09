@@ -58,26 +58,17 @@ def set_country_to_pop():
     """
     global country_to_pop
     country_to_pop = dict()
-    rows = country_pop.strip().split('\n')
+    rows = country_pop.split('\n')
     for row in rows[1:]:
-        columns = row.split(',')
+        columns = row.split('\t')
         country_name = columns[1].strip()
         population_text = columns[5].strip()
-        pct_decrease_text = columns[6].strip()
+        pct_decrease_text = float(columns[6].strip('+%'))
 
         pop_num = conv_num_with_commas(population_text)
-        pct_decrease_num = float(pct_decrease_text)
 
-        country_to_pop[country_name] = (pop_num, pct_decrease_num)
-
-    # global country_to_pop = dict():
-    # rows = country_pop.strip().split('\n')[1:]  # Skip header
-    # for row in rows:
-    #     columns = row.split('\t')
-    #     country_name = columns[1]
-    #     population = conv_num_with_commas(columns[5])
-    #     percent_decrease = float(columns[6])
-    #     country_to_pop[country_name] = (population, percent_decrease)
+        country_to_pop[country_name] = (pop_num, pct_decrease_text)
+    
     
 
 

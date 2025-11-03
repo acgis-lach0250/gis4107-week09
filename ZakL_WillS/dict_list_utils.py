@@ -16,6 +16,11 @@ def get_missing_keys(dict_ref, dict_to_compare):
        Example:  dict_ref = {1:1, 2:2, 3:3}, dict_to_compare = {2:2}
                  returns [1, 3]
     """
+    missing = []
+    for key in dict_ref:
+        if key not in dict_to_compare:
+            missing.append(key)
+    return missing
 
 
 def get_missing_keys_with_count(dict_ref, dict_to_compare):
@@ -25,12 +30,21 @@ def get_missing_keys_with_count(dict_ref, dict_to_compare):
        Example:  dict_ref = {1:1, 2:2, 3:3}, dict_to_compare = {2:2}
                  returns (2, [1, 3])
     """
-
+    missing = []
+    for key in dict_ref:
+        if key not in dict_to_compare:
+            missing.append(key)
+    return (len(missing), missing)
 
 def get_unique(in_list):
     """Retuns a list of unique values from in_list
     Example:  in_list = [1, 2, 2, 3] returns [1, 2, 3]
     """
+    unique = []
+    for item in in_list:
+        if item not in unique:
+            unique.append(item)
+    return unique
 
 
 def flatten_list(in_list):
@@ -42,3 +56,11 @@ def flatten_list(in_list):
     For example, if in_list = [1, (2,3), [4,5]], 
     the returned list would be [1, 2, 3, 4, 5]
     """
+    flat = []
+    for item in in_list:
+        if isinstance(item, (list, tuple)):
+            for sub_item in item:
+                flat.append(sub_item)
+        else:
+            flat.append(item)
+    return flat

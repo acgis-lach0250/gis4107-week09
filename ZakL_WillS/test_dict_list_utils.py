@@ -35,12 +35,8 @@ def test_get_unique():
     assert expected == actual
 
 
-def test_flatten_list(in_list):
-    flat = []
-    for item in in_list:
-        if isinstance(item, (list, tuple)):
-            for sub_item in item:
-                flat.append(sub_item)
-        else:
-            flat.append(item)
-    return flat
+def test_flatten_list():
+    in_list = [1, (2, 3), [4, 5]]  
+    expected = [1, 2, 3, 4, 5]     
+    actual = dlu.flatten_list(in_list)
+    assert expected == actual

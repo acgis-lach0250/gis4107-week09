@@ -78,14 +78,9 @@ def get_population(country_name):
        empty (i.e. no keys or values), then run set_country_to_pop
        to initialize it."""    
     if not country_to_pop:
-        rows = country_pop.split('\n')[1:]  # Skip header
-        for row in rows:
-            columns = row.split('\t')
-            name = columns[1]
-            population = conv_num_with_commas(columns[5])
-            country_to_pop[name] = population
-    
-    return country_to_pop.get(country_name)
+        set_country_to_pop()
+    result = country_to_pop.get(country_name)
+    return result[0] if result else None
 
 
 def get_continents():
